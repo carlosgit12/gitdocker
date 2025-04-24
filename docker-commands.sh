@@ -33,4 +33,53 @@ sudo systemctl stop docker.socket
 #3. Run a container while it’s stopped. 
 docker run hello-world
 #4. Restart the Docker daemon and run a container again.
+sudo systemctl restart docker.socket
+docker run hello-world
 
+#xercise 4
+#1. Run an Ubuntu container interactively.
+docker run -it ubuntu
+#2. Use apt update && apt install curl inside the container.
+apt update && apt install curl
+#3. Exit the container.
+exit
+
+#Exercise 5
+#1. List running containers: 
+ docker ps
+#2. List all containers (including exited)
+docker ps -a
+
+#Exercise 6
+#1. Run a container in the background 
+docker run -d --name apache bitnami/apache:latest
+#2. Then Pause it 
+docker pause apache
+#3. Unpause it: 
+docker unpause apache
+#4. Stop it 
+docker stop apache
+#5. Restart it 
+docker restart apache
+#6. Kill it
+docker kill apache
+
+#Exercise 7
+#Remove a running container
+docker rm -f inspiring_cannon
+
+#Exercise 9
+#1. Run alpine and execute echo "hello from alpine" 
+docker run alpine echo "hello from alpine"
+#2. Run busybox and execute uname -a 
+docker run busybox uname -a
+#3. List all the container
+docker ps -a
+
+#Exercise 10
+#1. Remove all stopped containers. 
+docker container prune
+#2. Remove unused images. 
+docker image prune
+#3. Inspect Docker disk usage.
+docker system df
