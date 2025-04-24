@@ -36,7 +36,7 @@ docker run hello-world
 sudo systemctl restart docker.socket
 docker run hello-world
 
-#xercise 4
+#Exercise 4
 #1. Run an Ubuntu container interactively.
 docker run -it ubuntu
 #2. Use apt update && apt install curl inside the container.
@@ -66,7 +66,14 @@ docker kill apache
 
 #Exercise 7
 #Remove a running container
+docker ps
 docker rm -f inspiring_cannon
+
+#Exercise 8
+#1. Pull the alpine and ubuntu images. 
+docker pull alpine 
+#2. List all the container images in your Docker Host.
+docker ps -a
 
 #Exercise 9
 #1. Run alpine and execute echo "hello from alpine" 
