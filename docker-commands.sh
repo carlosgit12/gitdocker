@@ -87,6 +87,6 @@ docker ps -a
 #1. Remove all stopped containers. 
 docker container prune
 #2. Remove unused images. 
-docker image prune
+docker image prune -a
 #3. Inspect Docker disk usage.
 docker system df
