@@ -1,12 +1,13 @@
 #!/bin/bash
 # Exercise 1
 #1. List all Docker networks.
- 
+docker network ls
 #2. Inspect the default bridge network. 
-
+docker network inspect bridge
 #3. Create a new bridge user-defined network. 
-
+docker network create mynetwork
 #4. Run a container attached to it and inspect its IP
+docker network connect mynetwork strange_goodall
 
 #Exercise 2
 #1. Run two Nginx containers which have to be connected to that user-defined network created in Exercise 1. 
