@@ -28,21 +28,30 @@ exit
 
 #Exercise 3
 #1. Create a Docker volume: mydata
-
+docker volume create mydata
 #2. Run a container using the volume. 
-
+docker run --rm -it -v mydata:/data ubuntu
+cd data
+ls
 #3. Write a file inside /data from the container, then: 
-
+touch prueba.txt
 #3.1. Stop the container. 
-
+exit
 #3.2. Relaunch to verify persistence.
+docker run --rm -it -v mydata:/data ubuntu
+ls /data
+exit
 
 #Exercise 4
 #1. Create a directory on your host. 
-
+mkdir mydirectory
 #2. Run a container with a bind mount. 
-
+docker run --rm -it -v ~/mydirectory:/mnt ubuntu bash
 #3. Create a file in /mnt from the container and check the host.
+cd /mnt
+touch test.txt
+exit 
+ls mydirectory
 
 #Exercise 5
 #1. Create a file in a named volume. 
