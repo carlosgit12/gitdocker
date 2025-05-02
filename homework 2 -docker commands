@@ -11,8 +11,20 @@ docker network connect mynetwork strange_goodall
 
 #Exercise 2
 #1. Run two Nginx containers which have to be connected to that user-defined network created in Exercise 1. 
-
+docker run nginx
+docker run nginx
+docker network connect mynetwork ecstatic_mendel
+docker network connect mynetwork stoic_khayam
 #2. Use ping within both containers to test communication each other by container name.
+docker exec -it ecstatic_mendel bash
+apt update 
+apt install iputils-ping
+ping 172.0.18.3
+exit
+docker exec -t stoic_khayan
+apt install iputils-ping
+ping 172.0.18.2
+exit
 
 #Exercise 3
 #1. Create a Docker volume: mydata
