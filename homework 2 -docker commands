@@ -86,12 +86,13 @@ docker version
 
 #Exercise 8
 #1. Run a container with policy --restart on-failure. 
-
+docker run -d --name testfailure --restart on-failure:10 alpine sh -c "exit 1"
 #2. Kill the container and observe how it restarts 
-
+watch docker ps
 #3. Try with the policy --restart unless-stopped 
-
+docker run --name traefik-test2 --restart unless-stopped -d traefik
 #4. Reboot the system and see what happens.
+sudo systemctl restart docker.socket
 
 #Exercise 9
 #1. Create a network dbnet. 
