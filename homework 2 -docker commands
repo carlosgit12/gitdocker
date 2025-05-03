@@ -55,16 +55,26 @@ ls mydirectory
 
 #Exercise 5
 #1. Create a file in a named volume. 
-
+docker volume create myvolume
+docker run --rm -t -v myvolume:/data ubuntu
+cd /data/
+touch myvolume.txt
+exit
 #2. Create a file using a bind mount. 
-
+docker run --rm -it -v ~/data:/data ubuntu
+cd /data
+touch mybindmount.txt
+exit
 #3. Observe where data is stored on the host with docker volume inspect and ls.
+docker volume inspect myvolume
+ls data
 
 #Exercise 6
 #1. Run an Ubuntu container with the necessary options to enable Docker in Docker (DinD). 
-
+docker run --name dind -d --privileged docker:dind
 #2. Exec into the container and run docker version.
-
+docker exec -it dind sh
+docker version
 #Exercise 7
 #1. Run a container with memory and CPU limits: 
 #Memory = 256m 
