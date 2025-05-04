@@ -79,10 +79,11 @@ docker version
 #1. Run a container with memory and CPU limits: 
 #Memory = 256m 
 #CPU = 0.5 
-
+docker run -it --name limited -m 256m --cpus=0.5 nginx
 #2. Check resource usage stats. 
-
+docker container stats
 #3. Check disk usage (docker system).
+docker system df
 
 #Exercise 8
 #1. Run a container with policy --restart on-failure. 
@@ -96,24 +97,25 @@ sudo systemctl restart docker.socket
 
 #Exercise 9
 #1. Create a network dbnet. 
-
+docker network create dbnet
 #2. Create a volume dbdata.
-
+docker volume create dbdata
 #3. Run a MariaDB container with the following requirements: 
 #3.1. Attached to volume dbdata.
-
+docker run --name mariadb01 -v dbdata:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=root -d mariadb:latest
 #3.2. Attached to network dbnet.
-
+docker network connect dbnet mariadb01
 #3.3. Do NOT expose ANY port.
 
 #Exercise 10
 #1. Run a PHPMyAdmin container with the following requirements: 
-#1. Attached to network dbnet (created in Exercise 9).
-
 #2. Use a bind mount to persist the web app configuration.
-
 #3. Linked to the previous MariaDB container (created in Exercise 9)
-
+docker run --name phpmyadmin -v ~mydirectory -d --link mariadb01:db -p 3306:80 phpmyadmin
+#1. Attached to network dbnet (created in Exercise 9).
+docker network connect dbnet phpmyadmin
 4. Open a browser to display the PHPMyAdmin Login Form.
-
+http://10.26.32.148:3306/
 5. Login with the DB credentials.
+root
+root
