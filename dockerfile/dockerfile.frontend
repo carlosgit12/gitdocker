@@ -1,0 +1,12 @@
+# Stage 1: build (no actual build, but used for structure)
+FROM busybox:latest as builder
+
+WORKDIR /app
+COPY index.html .
+
+# Stage 2: serve with NGINX
+FROM nginx:alpine
+
+COPY --from=builder /app/index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
