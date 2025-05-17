@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  api:
+    image: docker.jala.pro/docker-training/backend-app:carlosrojas
+    container_name: backend-api
+    restart: always
+    networks:
+      - training-net
+    volumes:
+      - api-data:/app/data
+    ports:
+      - "5000:5000"
+
+  fe:
+    image: docker.jala.pro/docker-training/frontend-app:carlosrojas
+    container_name: frontend-app
+    restart: always
+    networks:
+      - training-net
+    volumes:
+      - fe-data:/usr/share/frontend/html
+    ports:
+      - "80:80"
+
+volumes:
+  api-data:
+  fe-data:
+
+networks:
+  training-net:
+    driver: bridge
